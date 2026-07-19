@@ -1,14 +1,12 @@
 ---
-import { changeLanguage, setDefaultNamespace, t } from "i18next";
-import { localizePath } from "astro-i18next";
+import { localizePath, useTranslations, type Locale } from "../i18n";
 import Layout from "../layouts/Layout.astro";
 
-changeLanguage("en");
-
-setDefaultNamespace("about");
+const locale: Locale = Astro.props.locale ?? "en";
+const t = useTranslations(locale, "about");
 ---
 
-<Layout title={t("title")} description={t("description")}>
+<Layout title={t("title")} description={t("description")} locale={locale}>
 	<main class="section-shell flex h-full flex-col gap-6">
 		<h1 class="page-title">{t("heading")}</h1>
 		<p class="text-lg font-semibold text-tertiary">{t("subheading")}</p>
@@ -43,7 +41,7 @@ setDefaultNamespace("about");
 				{t("join-the-club")}
 			</a>
 			<a
-				href={localizePath("/events")}
+				href={localizePath("/events", locale)}
 				class="btn-primary"
 			>
 				{t("explore-events")}

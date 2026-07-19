@@ -1,12 +1,10 @@
 ---
-import i18next, { changeLanguage, setDefaultNamespace, t } from "i18next";
 import { getCollection } from "astro:content";
-import { localizePath } from "astro-i18next";
+import { localizePath, useTranslations, type Locale } from "../../i18n";
 import Layout from "../../layouts/Layout.astro";
 
-changeLanguage("en");
-
-setDefaultNamespace("blog");
+const locale: Locale = Astro.props.locale ?? "en";
+const t = useTranslations(locale, "blog");
 const blogPosts = await getCollection("blog");
 const entrySlug = (post: {
     slug?: string;
@@ -15,7 +13,7 @@ const entrySlug = (post: {
 const sortedPosts = blogPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<Layout title={t("title")} description={t("description")}>
+<Layout title={t("title")} description={t("description")} locale={locale}>
 	<main class="section-shell flex h-full max-w-3xl flex-col gap-6">
 		<h1 class="page-title">{t("heading")}</h1>
 		<p class="surface-card page-intro">
@@ -31,8 +29,9 @@ const sortedPosts = blogPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.p
 					sortedPosts.map(post => (
 						<article class="surface-card transition-shadow hover:shadow-lg">
 							<a
-								href={localizePath(
-									`/blog/${entrySlug(post as { slug?: string; id: string })}`,
+									href={localizePath(
+										`/blog/${entrySlug(post as { slug?: string; id: string })}`,
+										locale,
 								)}
 								class="group"
 							>
@@ -41,7 +40,7 @@ const sortedPosts = blogPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.p
 								</h2>
 								<p class="mt-2 text-sm text-quaternary/65">
 									{new Intl.DateTimeFormat(
-										i18next.language ?? "en",
+										locale,
 										{
 											year: "numeric",
 											month: "long",
