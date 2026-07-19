@@ -1,21 +1,23 @@
 ---
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
+import { switchLocalePath, type Locale } from "../i18n";
 import "../styles/global.css";
 
 export interface Props {
 	title: string;
 	description: string;
+	locale?: Locale;
 }
 
-const { title, description } = Astro.props;
-
-import { HeadHrefLangs } from "astro-i18next/components";
-import i18next from "i18next";
+const { title, description, locale = "en" } = Astro.props;
+const englishPath = switchLocalePath(Astro.url.pathname, "en");
+const frenchPath = switchLocalePath(Astro.url.pathname, "fr");
+const canonicalPath = locale === "fr" ? frenchPath : englishPath;
 ---
 
 <!DOCTYPE html>
-<html lang={i18next.language}>
+<html lang={locale}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -31,13 +33,16 @@ import i18next from "i18next";
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
-		<meta property="og:locale" content={i18next.language === "fr" ? "fr_CA" : "en_CA"} />
+		<meta property="og:locale" content={locale === "fr" ? "fr_CA" : "en_CA"} />
 		<meta property="og:image" content="/logo.png" />
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content="/logo.png" />
-		<HeadHrefLangs />
+		<link rel="canonical" href={new URL(canonicalPath, Astro.site)} />
+		<link rel="alternate" hreflang="en" href={new URL(englishPath, Astro.site)} />
+		<link rel="alternate" hreflang="fr" href={new URL(frenchPath, Astro.site)} />
+		<link rel="alternate" hreflang="x-default" href={new URL(englishPath, Astro.site)} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -47,11 +52,11 @@ import i18next from "i18next";
 	</head>
 	<body class="flex min-h-screen flex-col bg-background text-quaternary antialiased">
 		<div class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_10%_10%,rgba(20,93,160,0.16),transparent_35%),radial-gradient(circle_at_85%_15%,rgba(92,27,109,0.12),transparent_30%),radial-gradient(circle_at_50%_100%,rgba(140,6,6,0.12),transparent_35%)]"></div>
-		<Navbar />
+		<Navbar locale={locale} />
 		<div class="flex-1 py-6">
 			<slot />
 		</div>
-		<Footer />
+		<Footer locale={locale} />
 	</body>
 </html>
 

@@ -1,9 +1,10 @@
 ---
-import { Trans } from "astro-i18next/components";
 import { Icon } from 'astro-icon/components';
-import { setDefaultNamespace, t } from "i18next";
+import { useTranslations, type Locale } from "../i18n";
 
-setDefaultNamespace("footer");
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale, "footer");
 
 const socialLinks = [
 	{
@@ -47,10 +48,6 @@ const socialLinks = [
 	</nav>
 	<small class="mt-2 block text-sm text-quaternary/75">{t("copyright")}</small>
 	<small class="mt-1 block text-sm text-quaternary/75">
-		<Trans i18nKey="footer">
-			Made with <span>♥</span> by <a href="https://danielthorp.com" target="_blank" rel="noopener noreferrer" class="font-bold text-primary hover:text-tertiary">
-				Daniel Thorp
-			</a>.
-		</Trans>
+		{locale === "fr" ? "Fait avec" : "Made with"} <span>♥</span> {locale === "fr" ? "par" : "by"} <a href="https://danielthorp.com" target="_blank" rel="noopener noreferrer" class="font-bold text-primary hover:text-tertiary">Daniel Thorp</a>.
 	</small>
 </footer>

@@ -5,24 +5,29 @@
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
-		"build": "npx astro-i18next generate && astro build",
+		"build": "astro build",
+		"check": "astro check",
+		"test:i18n": "node scripts/check-i18n.mjs",
+		"verify": "npm run check && npm run test:i18n && npm run build",
 		"preview": "astro preview",
-		"astro": "astro",
-		"translate": "npx astro-i18next generate"
+		"astro": "astro"
 	},
+	"engines": { "node": ">=22.12.0" },
+	"packageManager": "npm@11.7.0",
 	"dependencies": {
 		"@astrojs/sitemap": "^3.7.2",
-		"astro": "^6.4.8",
-		"astro-i18next": "^1.0.0-beta.21",
+		"astro": "^7.1.1",
 		"astro-icon": "^1.1.5",
 		"tailwind-gradient-mask-image": "^1.2.0",
 		"tailwindcss": "^4.2.2"
 	},
 	"devDependencies": {
+		"@astrojs/check": "^0.9.6",
 		"@iconify-json/line-md": "^1.2.16",
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.2.2",
 		"prettier": "^3.8.1",
-		"prettier-plugin-tailwindcss": "^0.7.2"
+		"prettier-plugin-tailwindcss": "^0.7.2",
+		"typescript": "^6.0.3"
 	}
 }

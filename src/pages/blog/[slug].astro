@@ -1,12 +1,15 @@
 ---
-import i18next, { changeLanguage, setDefaultNamespace, t } from "i18next";
-import { localizePath } from "astro-i18next";
-import { getCollection, render } from "astro:content";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import { localizePath, useTranslations, type Locale } from "../../i18n";
 import Layout from "../../layouts/Layout.astro";
 
-changeLanguage("en");
+export interface Props {
+	locale?: Locale;
+	post: CollectionEntry<"blog">;
+}
 
-setDefaultNamespace("blog");
+const locale: Locale = Astro.props.locale ?? "en";
+const t = useTranslations(locale, "blog");
 export async function getStaticPaths() {
     const blogPosts = await getCollection("blog");
     const entrySlug = (post: {
@@ -30,6 +33,7 @@ const { Content } = await render(post);
 <Layout
 	title={`${post.data.title} | uOttawa Digital Policy Association`}
 	description={post.data.description}
+	locale={locale}
 >
 	<main class="section-shell flex h-full max-w-3xl flex-col gap-6">
 		<article class="surface-card">
@@ -37,7 +41,7 @@ const { Content } = await render(post);
 				<h1 class="page-title">{post.data.title}</h1>
 				<p class="mt-2 text-quaternary/65">
 					{
-						new Intl.DateTimeFormat(i18next.language ?? "en", {
+						new Intl.DateTimeFormat(locale, {
 							year: "numeric",
 							month: "long",
 							day: "numeric",
@@ -65,7 +69,7 @@ const { Content } = await render(post);
 		</article>
 		<div class="mt-2 border-t border-primary/20 pt-4">
 			<a
-				href={localizePath("/blog")}
+				href={localizePath("/blog", locale)}
 				class="font-semibold text-primary transition-colors hover:text-tertiary"
 			>
 				← {t("back-to-blog")}
