@@ -51,11 +51,14 @@ const canonicalPath = locale === "fr" ? frenchPath : englishPath;
 		/>
 	</head>
 	<body class="flex min-h-screen flex-col bg-background text-quaternary antialiased">
+		<a href="#main-content" class="absolute left-4 top-4 z-50 -translate-y-[150%] rounded-md bg-primary px-4 py-2 font-bold text-white transition-transform focus:translate-y-0 focus:outline-none focus:ring-2 focus:ring-tertiary focus:ring-offset-2">
+			{locale === "fr" ? "Passer au contenu principal" : "Skip to main content"}
+		</a>
 		<div class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_10%_10%,rgba(20,93,160,0.16),transparent_35%),radial-gradient(circle_at_85%_15%,rgba(92,27,109,0.12),transparent_30%),radial-gradient(circle_at_50%_100%,rgba(140,6,6,0.12),transparent_35%)]"></div>
 		<Navbar locale={locale} />
-		<div class="flex-1 py-6">
+		<main id="main-content" tabindex="-1" class="flex-1 py-6 outline-none">
 			<slot />
-		</div>
+		</main>
 		<Footer locale={locale} />
 	</body>
 </html>
