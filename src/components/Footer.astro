@@ -37,7 +37,7 @@ const socialLinks = [
 						href={link.href}
 						target={link.external ? "_blank" : undefined}
 						rel={link.external ? "noopener noreferrer" : undefined}
-						class="inline-flex rounded-md p-1 transition-colors hover:bg-primary/10"
+						class="inline-flex rounded-md p-1 transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2"
 					>
 						<Icon name={link.icon} class="h-8 w-8 text-tertiary" />
 						<span class="sr-only">{t(link.labelKey)}</span>
@@ -48,6 +48,6 @@ const socialLinks = [
 	</nav>
 	<small class="mt-2 block text-sm text-quaternary/75">{t("copyright")}</small>
 	<small class="mt-1 block text-sm text-quaternary/75">
-		{locale === "fr" ? "Fait avec" : "Made with"} <span>♥</span> {locale === "fr" ? "par" : "by"} <a href="https://danielthorp.com" target="_blank" rel="noopener noreferrer" class="font-bold text-primary hover:text-tertiary">Daniel Thorp</a>.
+		{locale === "fr" ? "Fait avec" : "Made with"} <span>♥</span> {locale === "fr" ? "par" : "by"} <a href="https://danielthorp.com" target="_blank" rel="noopener noreferrer" class="rounded-sm font-bold text-primary hover:text-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2">Daniel Thorp</a>.
 	</small>
 </footer>
