@@ -2,18 +2,15 @@
 > uodpa@0.0.1 dev
 > astro dev
 
-18:14:01 [vite] connected.
-18:14:03 [types] Generated 1ms
-18:14:03 [vite] connected.
-
- update  ▶ New version of Astro available: 7.2.2
-  Run npx @astrojs/upgrade to update
-
-18:14:03 [content] Syncing content
-18:14:03 [content] Synced content
-18:14:03 [vite] Re-optimizing dependencies because vite config has changed
- astro  v7.1.1 ready in 3781 ms
+18:04:42 [vite] connected.
+18:04:44 [types] Generated 1ms
+18:04:44 [vite] connected.
+18:04:44 [content] Syncing content
+18:04:45 [content] Synced content
+18:04:45 [vite] Re-optimizing dependencies because vite config has changed
+ astro  v7.2.6 ready in 3194 ms
 ┃ Local    http://localhost:4321/
 ┃ Network  use --host to expose
-18:14:04 watching for file changes...
-18:14:29 [200] / 106ms
+18:04:45 watching for file changes...
+18:05:28 [WARN] [astro-icon] Failed to load icons from "src/icons": ENOENT: no such file or directory, scandir 'src/icons/'
+18:05:30 [200] / 111ms
