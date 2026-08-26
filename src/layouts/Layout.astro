@@ -51,7 +51,7 @@ const canonicalPath = locale === "fr" ? frenchPath : englishPath;
 		/>
 	</head>
 	<body class="flex min-h-screen flex-col bg-background text-quaternary antialiased">
-		<a href="#main-content" class="absolute left-4 top-4 z-50 -translate-y-[150%] rounded-md bg-primary px-4 py-2 font-bold text-white transition-transform focus:translate-y-0 focus:outline-none focus:ring-2 focus:ring-tertiary focus:ring-offset-2">
+		<a href="#main-content" class="absolute left-4 top-4 z-50 -translate-y-[150%] rounded-md bg-primary px-4 py-2 font-bold text-white transition-transform focus-visible:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2">
 			{locale === "fr" ? "Passer au contenu principal" : "Skip to main content"}
 		</a>
 		<div class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_10%_10%,rgba(20,93,160,0.16),transparent_35%),radial-gradient(circle_at_85%_15%,rgba(92,27,109,0.12),transparent_30%),radial-gradient(circle_at_50%_100%,rgba(140,6,6,0.12),transparent_35%)]"></div>
@@ -75,15 +75,15 @@ const canonicalPath = locale === "fr" ? frenchPath : englishPath;
 	}
 
 	.btn-primary {
-		@apply inline-flex items-center justify-center rounded-lg bg-primary px-6 py-2.5 font-bold text-white transition duration-300 hover:bg-tertiary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+		@apply inline-flex items-center justify-center rounded-lg bg-primary px-6 py-2.5 font-bold text-white transition duration-300 hover:bg-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
 	}
 
 	.btn-secondary {
-		@apply inline-flex items-center justify-center rounded-lg bg-secondary px-6 py-2.5 font-bold text-white transition duration-300 hover:bg-tertiary focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2;
+		@apply inline-flex items-center justify-center rounded-lg bg-secondary px-6 py-2.5 font-bold text-white transition duration-300 hover:bg-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2;
 	}
 
 	.btn-outline {
-		@apply inline-flex items-center justify-center rounded-lg border border-primary bg-transparent px-6 py-2.5 font-bold text-primary transition duration-300 hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+		@apply inline-flex items-center justify-center rounded-lg border border-primary bg-transparent px-6 py-2.5 font-bold text-primary transition duration-300 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
 	}
 
 	.page-title {
