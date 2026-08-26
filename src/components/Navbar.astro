@@ -45,7 +45,7 @@ const isCurrentPath = (path: string) => {
 	class="relative border-b z-10 border-primary/30 bg-background/90 px-4 text-center text-primary shadow-sm backdrop-blur-none md:px-6 md:backdrop-blur"
 >
 	<div class="flex items-center justify-between gap-4 px-4 py-3 md:hidden">
-		<a href={localizePath("/", locale)} class="flex items-center gap-2">
+		<a href={localizePath("/", locale)} class="flex items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2">
 			<img
 				src="/logo.png"
 				alt="uODPA logo"
@@ -60,7 +60,7 @@ const isCurrentPath = (path: string) => {
 				aria-label="Toggle mobile menu"
 				aria-controls="mobile-menu"
 				aria-expanded="false"
-				class="mobile-menu-trigger list-none rounded-md p-1 text-primary hover:bg-primary/10 hover:text-tertiary focus:ring-2 focus:ring-tertiary"
+				class="mobile-menu-trigger list-none rounded-md p-1 text-primary hover:bg-primary/10 hover:text-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2"
 			>
 				<svg
 					id="menu-icon"
@@ -127,7 +127,7 @@ const isCurrentPath = (path: string) => {
 					class="flex items-center justify-center py-2"
 					style={`--menu-item-delay: ${(navItems.length + 1) * 30}ms;`}
 				>
-					<a href={alternatePath} hreflang={alternateLocale} lang={alternateLocale} class="mx-2 block rounded-md border border-primary/40 bg-white/85 px-2 py-2 text-primary transition-colors duration-500 hover:bg-primary hover:text-white">
+					<a href={alternatePath} hreflang={alternateLocale} lang={alternateLocale} aria-label={locale === "en" ? "Passer en français" : "Switch to English"} class="mx-2 block rounded-md border border-primary/40 bg-white/85 px-2 py-2 text-primary transition-colors duration-500 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2">
 						{alternateLocale.toUpperCase()}
 					</a>
 				</div>
@@ -138,7 +138,7 @@ const isCurrentPath = (path: string) => {
 		<li class="mr-auto hidden md:block">
 			<a
 				href={localizePath("/", locale)}
-				class="flex items-center gap-3 py-2 pr-4"
+				class="flex items-center gap-3 rounded-md py-2 pr-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2"
 			>
 				<img
 					src="/logo.png"
@@ -168,7 +168,7 @@ const isCurrentPath = (path: string) => {
 			})
 		}
 		<li class="flex items-center justify-center py-2">
-			<a href={alternatePath} hreflang={alternateLocale} lang={alternateLocale} class="mx-2 block rounded-md border border-primary/40 bg-white/85 px-2 py-2 text-primary transition-colors duration-500 hover:bg-primary hover:text-white md:bg-white/70">
+			<a href={alternatePath} hreflang={alternateLocale} lang={alternateLocale} aria-label={locale === "en" ? "Passer en français" : "Switch to English"} class="mx-2 block rounded-md border border-primary/40 bg-white/85 px-2 py-2 text-primary transition-colors duration-500 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 md:bg-white/70">
 				{alternateLocale.toUpperCase()}
 			</a>
 		</li>
@@ -282,6 +282,6 @@ const isCurrentPath = (path: string) => {
 	}
 
 	.nav-link {
-		@apply block w-full rounded-lg px-4 py-3 text-xl font-semibold text-primary transition-colors duration-300 hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-tertiary md:rounded md:text-base aria-[current=page]:bg-primary/10 aria-[current=page]:text-tertiary aria-[current=page]:hover:text-white;
+		@apply block w-full rounded-lg px-4 py-3 text-xl font-semibold text-primary transition-colors duration-300 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 md:rounded md:text-base aria-[current=page]:bg-primary/10 aria-[current=page]:text-tertiary aria-[current=page]:hover:text-white;
 	}
 </style>
