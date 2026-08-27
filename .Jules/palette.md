@@ -9,3 +9,7 @@
 ## 2023-10-27 - Added active state to navigation links
 **Learning:** The navigation menu previously lacked any visual or semantic indication of the current active page, violating WCAG principles for providing context and hindering general usability for sighted users.
 **Action:** Implemented dynamic path checking to apply `aria-current="page"` to the active link. This allowed for semantic indication for screen readers and styling using Tailwind's `aria-[current=page]:` variant to provide clear visual feedback without custom CSS.
+
+## 2026-08-27 - [Focus Within for Cards]
+**Learning:** For clickable cards (like blog posts) containing inner links, applying `focus-visible` solely to the inner link creates a small, disconnected focus ring that visually breaks the card metaphor.
+**Action:** Use `focus-within:ring-2 focus-within:ring-tertiary focus-within:ring-offset-2` on the outer card wrapper (`<article>`) and apply `focus-visible:outline-none` to the inner `<a>` tag. This transfers the focus styling to the entire card boundary when the link is focused, resulting in a much clearer and more cohesive keyboard navigation experience.
