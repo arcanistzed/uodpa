@@ -27,13 +27,13 @@ const sortedPosts = blogPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.p
 					</p>
 				) : (
 					sortedPosts.map(post => (
-						<article class="surface-card transition-shadow hover:shadow-lg">
+						<article class="surface-card transition-shadow hover:shadow-lg focus-within:ring-2 focus-within:ring-tertiary focus-within:ring-offset-2">
 							<a
 									href={localizePath(
 										`/blog/${entrySlug(post as { slug?: string; id: string })}`,
 										locale,
 								)}
-								class="group"
+								class="group block focus-visible:outline-none"
 							>
 								<h2 class="text-2xl font-bold text-primary transition-colors group-hover:text-tertiary">
 									{post.data.title}
