@@ -1,0 +1,19 @@
+
+> uodpa@0.0.1 dev
+> astro dev
+
+18:19:14 [vite] connected.
+18:19:16 [types] Generated 1ms
+18:19:16 [vite] connected.
+
+ update  ▶ New version of Astro available: 7.2.9
+  Run npx @astrojs/upgrade to update
+
+18:19:16 [content] Syncing content
+18:19:16 [content] Synced content
+18:19:16 [vite] Re-optimizing dependencies because vite config has changed
+ astro  v7.1.1 ready in 3891 ms
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+18:19:17 watching for file changes...
+18:20:16 [200] /blog 212ms
