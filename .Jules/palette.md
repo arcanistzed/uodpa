@@ -9,3 +9,7 @@
 ## 2023-10-27 - Added active state to navigation links
 **Learning:** The navigation menu previously lacked any visual or semantic indication of the current active page, violating WCAG principles for providing context and hindering general usability for sighted users.
 **Action:** Implemented dynamic path checking to apply `aria-current="page"` to the active link. This allowed for semantic indication for screen readers and styling using Tailwind's `aria-[current=page]:` variant to provide clear visual feedback without custom CSS.
+
+## 2023-10-27 - Focus Management for Custom Details/Summary UI
+**Learning:** When using `<details>` and `<summary>` for custom UI components (like a mobile menu or modal) that intercept standard browser behavior (e.g., closing via the Escape key), focus must be explicitly managed. If the menu is closed via keyboard without returning focus, keyboard users lose their place in the document flow.
+**Action:** When programmatically closing a custom UI component via keyboard interaction (such as the Escape key), always return focus to the trigger element (e.g., the `<summary>` element) using `element.focus()`.
