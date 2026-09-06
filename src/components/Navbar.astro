@@ -212,6 +212,7 @@ const isCurrentPath = (path: string) => {
 		document.addEventListener("keydown", event => {
 			if (event.key === "Escape" && detailsEl.open) {
 				closeMenu();
+				summaryEl?.focus();
 			}
 		});
 
