@@ -15,12 +15,12 @@ const navItems = [
 	{ path: "/team", label: "team" },
 ];
 
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 const isCurrentPath = (path: string) => {
-	const normPathname = currentPath === "/" ? currentPath : currentPath.replace(/\/$/, "");
-	const normPath = path === "/" ? path : path.replace(/\/$/, "");
-	return normPathname === normPath;
+	const normPath = path.replace(/\/+$/, "") || "/";
+	return currentPath === normPath || currentPath.startsWith(`${normPath}/`);
 };
+const switchLabel = t("switchLocale");
 ---
 
 <style>
@@ -31,6 +31,7 @@ const isCurrentPath = (path: string) => {
 	/* Respect reduced motion preferences */
 	@media (prefers-reduced-motion: reduce) {
 		#mobile-menu,
+		#mobile-menu > *,
 		#menu-line-1,
 		#menu-line-2,
 		#menu-line-3 {
@@ -41,11 +42,11 @@ const isCurrentPath = (path: string) => {
 
 <nav
 	id="site-nav"
-	aria-label="Navigation Bar"
-	class="relative border-b z-10 border-primary/30 bg-background/90 px-4 text-center text-primary shadow-sm backdrop-blur-none md:px-6 md:backdrop-blur"
+	aria-label={t("main")}
+	class="sticky top-0 z-10 border-b border-primary/30 bg-background/90 px-4 text-center text-primary shadow-sm backdrop-blur-none md:px-6 md:backdrop-blur"
 >
 	<div class="flex items-center justify-between gap-4 px-4 py-3 md:hidden">
-		<a href={localizePath("/", locale)} class="flex items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2">
+		<a href={localizePath("/", locale)} class="brand-link gap-2">
 			<img
 				src="/logo.png"
 				alt="uODPA logo"
@@ -60,7 +61,7 @@ const isCurrentPath = (path: string) => {
 				aria-label="Toggle mobile menu"
 				aria-controls="mobile-menu"
 				aria-expanded="false"
-				class="mobile-menu-trigger list-none rounded-md p-1 text-primary hover:bg-primary/10 hover:text-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2"
+				class="mobile-menu-trigger list-none rounded-md p-1 text-primary transition-colors duration-300 hover:bg-primary/10 hover:text-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2"
 			>
 				<svg
 					id="menu-icon"
@@ -123,23 +124,22 @@ const isCurrentPath = (path: string) => {
 						);
 					})
 				}
-				<div
-					class="flex items-center justify-center py-2"
+				<a
+					href={alternatePath}
+					hreflang={alternateLocale}
+					lang={alternateLocale}
+					aria-label={switchLabel}
+					class="nav-link"
 					style={`--menu-item-delay: ${(navItems.length + 1) * 30}ms;`}
 				>
-					<a href={alternatePath} hreflang={alternateLocale} lang={alternateLocale} aria-label={locale === "en" ? "Passer en français" : "Switch to English"} class="mx-2 block rounded-md border border-primary/40 bg-white/85 px-2 py-2 text-primary transition-colors duration-500 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2">
-						{alternateLocale.toUpperCase()}
-					</a>
-				</div>
+					{alternateLocale.toUpperCase()}
+				</a>
 			</div>
 		</details>
 	</div>
-	<ul class="hidden md:flex md:items-center md:gap-1">
+	<ul class="hidden md:flex md:items-center md:gap-2">
 		<li class="mr-auto hidden md:block">
-			<a
-				href={localizePath("/", locale)}
-				class="flex items-center gap-3 rounded-md py-2 pr-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2"
-			>
+			<a href={localizePath("/", locale)} class="brand-link gap-3 py-2 pr-4">
 				<img
 					src="/logo.png"
 					alt="uODPA logo"
@@ -167,8 +167,14 @@ const isCurrentPath = (path: string) => {
 				);
 			})
 		}
-		<li class="flex items-center justify-center py-2">
-			<a href={alternatePath} hreflang={alternateLocale} lang={alternateLocale} aria-label={locale === "en" ? "Passer en français" : "Switch to English"} class="mx-2 block rounded-md border border-primary/40 bg-white/85 px-2 py-2 text-primary transition-colors duration-500 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 md:bg-white/70">
+		<li class="w-full text-center md:w-fit">
+			<a
+				href={alternatePath}
+				hreflang={alternateLocale}
+				lang={alternateLocale}
+				aria-label={switchLabel}
+				class="nav-link"
+			>
 				{alternateLocale.toUpperCase()}
 			</a>
 		</li>
@@ -282,7 +288,25 @@ const isCurrentPath = (path: string) => {
 		transform: translateY(0);
 	}
 
+	.brand-link {
+		@apply -ml-2 flex items-center rounded-lg pl-2 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary;
+	}
+
+	/* No ring offset here: the ring must stay inside the gap between items */
 	.nav-link {
-		@apply block w-full rounded-lg px-4 py-3 text-xl font-semibold text-primary transition-colors duration-300 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary focus-visible:ring-offset-2 md:rounded md:text-base aria-[current=page]:bg-primary/10 aria-[current=page]:text-tertiary aria-[current=page]:hover:text-white;
+		@apply block w-full rounded-lg px-4 py-3 text-xl font-semibold text-primary transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary md:rounded md:text-base;
+	}
+
+	/* Gate hover on pointer devices so a tap doesn't leave a stuck tint */
+	@media (hover: hover) {
+		.brand-link:hover,
+		.nav-link:hover {
+			@apply bg-primary/10 text-tertiary;
+		}
+	}
+
+	/* Current page: tint plus an accent bar (left on mobile, bottom on desktop) */
+	.nav-link[aria-current="page"] {
+		@apply bg-primary/10 text-tertiary shadow-[inset_3px_0_0_0_var(--color-tertiary)] md:shadow-[inset_0_-3px_0_0_var(--color-tertiary)];
 	}
 </style>

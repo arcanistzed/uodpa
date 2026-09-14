@@ -1,4 +1,6 @@
 {
+	"main": "Main",
+	"switchLocale": "Passer en français",
 	"home": "uODPA",
 	"about": "About",
 	"events": "Events",
