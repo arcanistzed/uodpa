@@ -1,5 +1,6 @@
 ---
 import { useTranslations, type Locale } from "../i18n";
+import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
 
 const locale: Locale = Astro.props.locale ?? "en";
@@ -32,9 +33,11 @@ const resources = [
 						target="_blank"
 						rel="noopener noreferrer"
 						referrerpolicy="no-referrer"
-						class={resource.buttonClass}
+						class={`${resource.buttonClass} gap-2`}
 					>
 						{t(resource.labelKey)}
+						<Icon name="line-md:external-link" aria-hidden="true" />
+						<span class="sr-only">{t("opens-new-tab")}</span>
 					</a>
 				))
 			}
