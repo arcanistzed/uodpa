@@ -9,3 +9,7 @@
 ## 2023-10-27 - Added active state to navigation links
 **Learning:** The navigation menu previously lacked any visual or semantic indication of the current active page, violating WCAG principles for providing context and hindering general usability for sighted users.
 **Action:** Implemented dynamic path checking to apply `aria-current="page"` to the active link. This allowed for semantic indication for screen readers and styling using Tailwind's `aria-[current=page]:` variant to provide clear visual feedback without custom CSS.
+
+## 2024-11-20 - [External Link Accessibility Pattern]
+**Learning:** Adding screen reader text for external links is crucial, but doing so via programmatic translations inside raw `.json` files can easily corrupt existing file formatting (e.g., overriding tabs with spaces). Furthermore, untracked testing artifacts can easily slip into PRs if not cleaned up.
+**Action:** When writing scripts to update JSON loc files en masse, always retain their original tab structure (`JSON.stringify(..., null, '\t')`). Always double-check `git status` to ensure temporary `.js` scripts and `.log` files created during local testing are removed or ignored before commit.
