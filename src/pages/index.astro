@@ -1,5 +1,6 @@
 ---
 import { localizePath, useTranslations, type Locale } from "../i18n";
+import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
 
 const locale: Locale = Astro.props.locale ?? "en";
@@ -34,6 +35,8 @@ const t = useTranslations(locale, "home");
 				class="btn-secondary"
 			>
 				{t("join-the-club")}
+				<Icon name="line-md:external-link" class="ml-2 h-5 w-5" />
+				<span class="sr-only">{t("opens-new-tab")}</span>
 			</a>
 			<a href={localizePath("/events", locale)} class="btn-primary">
 				{t("explore-events")}
