@@ -9,3 +9,7 @@
 ## 2023-10-27 - Added active state to navigation links
 **Learning:** The navigation menu previously lacked any visual or semantic indication of the current active page, violating WCAG principles for providing context and hindering general usability for sighted users.
 **Action:** Implemented dynamic path checking to apply `aria-current="page"` to the active link. This allowed for semantic indication for screen readers and styling using Tailwind's `aria-[current=page]:` variant to provide clear visual feedback without custom CSS.
+
+## 2024-11-20 - [External Link Accessibility with Astro/i18n]
+**Learning:** When ensuring accessibility for external links (e.g. adding visually hidden text like "(opens in a new tab)"), relying on `sr-only` elements requires updating all localized translation files (e.g. `home.json`, `about.json`). In Astro projects, ensuring icons and `sr-only` text align perfectly within buttons often requires utility classes like `gap-2` to prevent layout issues.
+**Action:** Always include an external link icon and translated, visually hidden screen reader text for `target="_blank"` links. Update localized JSON files with tabs (`\t`) instead of spaces to avoid Git formatting conflicts in this project.
