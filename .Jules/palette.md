@@ -9,3 +9,7 @@
 ## 2023-10-27 - Added active state to navigation links
 **Learning:** The navigation menu previously lacked any visual or semantic indication of the current active page, violating WCAG principles for providing context and hindering general usability for sighted users.
 **Action:** Implemented dynamic path checking to apply `aria-current="page"` to the active link. This allowed for semantic indication for screen readers and styling using Tailwind's `aria-[current=page]:` variant to provide clear visual feedback without custom CSS.
+
+## 2026-10-06 - [External Link Accessibility]
+**Learning:** When adding external links, relying solely on visual cues (like an icon) or assuming users will know it opens in a new tab isn't enough. Screen reader users need explicit context.
+**Action:** Adhere to accessibility standards by including an external link icon and visually hidden (`sr-only`) localized text (e.g., `opens-new-tab` translated in JSON files) to indicate the link opens in a new tab.
