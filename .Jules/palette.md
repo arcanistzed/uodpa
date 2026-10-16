@@ -9,3 +9,7 @@
 ## 2023-10-27 - Added active state to navigation links
 **Learning:** The navigation menu previously lacked any visual or semantic indication of the current active page, violating WCAG principles for providing context and hindering general usability for sighted users.
 **Action:** Implemented dynamic path checking to apply `aria-current="page"` to the active link. This allowed for semantic indication for screen readers and styling using Tailwind's `aria-[current=page]:` variant to provide clear visual feedback without custom CSS.
+
+## 2023-10-24 - Animated SVGs in Visual Testing
+**Learning:** Animated SVG icons (like those from `@iconify-json/line-md`) render incrementally. If you take a Playwright screenshot immediately after a page loads, the icon might appear as a broken, partially drawn shape (e.g., just an open bracket `[`) instead of the full icon.
+**Action:** Always insert a short wait (e.g., `page.wait_for_timeout(2000)`) in visual testing scripts when dealing with animated SVG icons to ensure they fully render before capturing the screenshot.
