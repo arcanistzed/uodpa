@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import { useTranslations, type Locale } from "../i18n";
 import Layout from "../layouts/Layout.astro";
 
@@ -8,12 +9,14 @@ const resources = [
     {
         href: "https://docs.google.com/document/d/1GNfZnzhs1jUJHRSdNyTIMxJp_GTSB_xmjfakUxvOYDs/edit?tab=t.0",
         labelKey: "constitution",
-        buttonClass: "btn-primary",
+        buttonClass: "btn-primary gap-2",
+        external: true,
     },
     {
         href: "https://drive.google.com/drive/folders/1FceJP3uJaJWtQAW8pvvMs-BgBH984SXx",
         labelKey: "meeting-minutes",
-        buttonClass: "btn-outline",
+        buttonClass: "btn-outline gap-2",
+        external: true,
     },
 ];
 ---
@@ -35,6 +38,12 @@ const resources = [
 						class={resource.buttonClass}
 					>
 						{t(resource.labelKey)}
+						{resource.external && (
+							<>
+								<Icon name="line-md:external-link" class="h-5 w-5 shrink-0" />
+								<span class="sr-only">{t("opens-new-tab")}</span>
+							</>
+						)}
 					</a>
 				))
 			}
