@@ -14,5 +14,6 @@
 		"vp-internal": "VP Internal",
 		"vp-external": "VP External",
 		"first-year-rep": "First-Year Representative"
-	}
+	},
+	"opens-new-tab": "(opens in a new tab)"
 }

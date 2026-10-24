@@ -1,10 +1,11 @@
 {
-    "main": "Principale",
-    "switchLocale": "Switch to English",
-    "home": "APNuO",
-    "about": "À propos",
-    "events": "Événements",
-    "blog": "Blog",
-    "governance": "Gouvernance",
-    "team": "Équipe"
+	"main": "Principale",
+	"switchLocale": "Switch to English",
+	"home": "APNuO",
+	"about": "À propos",
+	"events": "Événements",
+	"blog": "Blog",
+	"governance": "Gouvernance",
+	"team": "Équipe",
+	"opens-new-tab": "(s'ouvre dans un nouvel onglet)"
 }
